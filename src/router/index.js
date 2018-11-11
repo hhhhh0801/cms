@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Category from '@/pages/Category'
 import Article from '@/pages/Article'
 import User from '@/pages/User'
+import Chart from '@/pages/Chart'
 import Setting from '@/pages/Setting'
 import SettingInfo from '@/pages/Setting/Info'
 import SettingAuth from '@/pages/Setting/Auth'
@@ -20,7 +21,7 @@ export default new Router({
    {
       path: '/',
       // name: 'HelloWorld',
-      component: HelloWorld
+      component: Chart
     },
    {
       path: '/category',

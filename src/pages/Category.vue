@@ -31,8 +31,8 @@
 	  <!-- 模态框 -->
 	  <div class="dialog">
 	  	<el-dialog :title="categoryDialog.title" :visible.sync="categoryDialog.visible">
-			  <el-form :model="categoryDialog.form">
-			    <el-form-item label="栏目名称" label-width="120px">
+			  <el-form :model="categoryDialog.form" :rules="rules" ref="categoryDialog.form">
+			    <el-form-item label="栏目名称" label-width="120px" prop="name">
 			      <el-input v-model="categoryDialog.form.name" autocomplete="off"></el-input>
 			    </el-form-item>
 			    <el-form-item label="父栏目" label-width="120px">
@@ -40,14 +40,14 @@
 			        <el-option :key='index' v-for='(c,index) in categories' :label="c.name" :value="c.id"></el-option>
 			      </el-select>
 			    </el-form-item>
-			    <el-form-item label="描述信息" label-width="120px">
-			      <el-input type="textarea":rows="2"placeholder="请输入内容"v-model="categoryDialog.form.comment"> </el-input> 
+			    <el-form-item label="描述信息" label-width="120px" prop="comment">
+			      <el-input type="textarea":rows="2"placeholder="请输入内容"v-model="categoryDialog.form.comment" > </el-input> 
 			    </el-form-item>
+			  <el-form-item>
+			    <el-button type="primary" @click="submitForm('categoryDialog.form') " class='dialogBtns'>确 定</el-button>
+			    <el-button @click='closeCategoryDialog' class='dialogBtns'>取 消</el-button>
+			  </el-form-item>
 			  </el-form>
-			  <div slot="footer" class="dialog-footer">
-			    <el-button @click='closeCategoryDialog'>取 消</el-button>
-			    <el-button type="primary" @click='saveOrUpdateCategory'>确 定</el-button>
-			  </div>
 			</el-dialog>
 	  </div>
 	</div>
@@ -64,7 +64,15 @@
 					title:'',
 					form:{},
 					visible:false
-				}
+				},
+				rules: {
+          name: [
+            { required: true, message: '请输入栏目名称', trigger: 'blur' },
+          ],
+          comment:[
+            { required: true, message: '请输入描述信息', trigger: 'blur' },
+          ]
+        }
 			}
 		},
 		created(){
@@ -72,6 +80,17 @@
 			this.loadCategory();
 		},
 		methods:{
+			submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            this.saveOrUpdateCategory();
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      
 			handleSelectionChange(val){
         this.multipleSelection = val;
       },
@@ -207,5 +226,9 @@
 	}
 	i.fa-pencil{
 		color:#66bb0d;
+	}
+	.dialogBtns{
+		float: right;
+		margin: 0 1em;
 	}
 </style>

@@ -1,5 +1,4 @@
 <template>
-  <div id="home">
-    <mavon-editor />
-  </div>
+<div class="home">hello</div>
 </template>
+

@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div id="app">
     <!-- 头 -->
     <div class="header">
       <div class="title">
@@ -69,6 +69,9 @@
         this.currentRoute = to.path;
       }
     },
+    // created(){
+      
+    // }
      methods: {
       toggle:function(){
         this.isCollapse = !this.isCollapse;
@@ -109,7 +112,7 @@
     width: 100%;
     height: 60px;
     top: 0;
-    background-color: rgb(64, 158, 255);   
+    background-color: #0099cc;   
     padding: 0 1em; 
   }
   .header .title {
@@ -184,4 +187,5 @@
     .fa{
       padding: 5px;
     }
+    
 </style>

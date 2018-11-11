@@ -62,6 +62,7 @@
     <!-- 分页 -->
     <div class="page">
       <el-pagination
+        background
         layout="prev, pager, next"
         @current-change='handleCurrentChange'
         :page-size='params.pageSize'
@@ -71,17 +72,17 @@
     <!-- 分页结束 -->
     <!-- 模态框区 -->
     <el-dialog fullscreen :title="articleDialog.title" :visible.sync="articleDialog.visible">
-      <el-form :model="articleDialog.form">
-        <el-form-item label="资讯标题" label-width="120px">
+      <el-form :model="articleDialog.form" :rules="rules" ref="articleDialog.form">
+        <el-form-item label="资讯标题" label-width="120px" prop="title">
           <el-input v-model="articleDialog.form.title" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="所属栏目" label-width="120px">
+        <el-form-item label="所属栏目" label-width="120px" prop="categoryId">
           <el-select v-model="articleDialog.form.categoryId" placeholder="一级栏目">
             <el-option :key='index' v-for='(c,index) in categories' :label="c.name" :value="c.id"></el-option>
           </el-select>
         </el-form-item>
 
-        <el-form-item label="列表样式" label-width="120px">
+        <el-form-item label="列表样式" label-width="120px" prop="liststyle">
           <div class="list_style">
             <div class="list_one" 
             :class='{current:articleDialog.form.liststyle == "style-one"}' 
@@ -106,15 +107,15 @@
             <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
           </el-upload>
         </el-form-item>
-        <el-form-item label="资讯正文" label-width="120px">
+        <el-form-item label="资讯正文" label-width="120px" prop="content">
           <!-- 富文本编辑器 -->
           <mavon-editor v-model="articleDialog.form.content"/>
         </el-form-item>
+        <el-form-item>
+          <el-button class='dialogBtns' type="primary" @click="submitForm('articleDialog.form')">确 定</el-button>
+          <el-button class='dialogBtns' @click='closeArticleDialog'>取 消</el-button>
+        </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button size='mini' @click='closeArticleDialog'>取 消</el-button>
-        <el-button size='mini' type="primary" @click='saveOrUpdateArticle'>确 定</el-button>
-      </div>
     </el-dialog>
     <!-- 模态框区结束 -->
   </div>
@@ -141,7 +142,18 @@
             fileIds:[]
           },
           fileList:[]
-        }
+        },
+        rules: {
+                title: [
+                  { required: true, message: '请输入资讯标题', trigger: 'blur' },
+                ],
+                categoryId: [
+                  { required: true, message: '请选择所属栏目', trigger: 'change' }
+                ],
+                content: [
+                  { required: true, message: '请输入资讯正文', trigger: 'blur' },
+                ],
+            }
       }
     },
     watch:{
@@ -158,6 +170,16 @@
       this.findAllArticles();
     },
     methods:{
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            this.saveOrUpdateArticle();
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
       deleteArticle(id){
         this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
           confirmButtonText: '确定',
@@ -386,5 +408,14 @@
   }
   i.fa-pencil{
     color:#66bb0d;
+  }
+  .page{
+    position: fixed;
+    bottom: 1em;
+    right: 2em;
+  }
+  .dialogBtns{
+    float: right;
+    margin:0 1em;
   }
 </style>
