@@ -1,5 +1,6 @@
 # cms
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 > A Vue.js project
 
@@ -23,3 +24,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 =======
 新闻资讯后台管理 vue+element-ui
 >>>>>>> 9666f60c958293ce9a527b80d7a647c5d1a2d12f
+=======
+新闻
+>>>>>>> 22a90f7aae6a33b7a9e582c605e5a56940f49dcf
