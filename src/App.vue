@@ -10,7 +10,7 @@
             <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1514093920321&di=913e88c23f382933ef430024afd9128a&imgtype=0&src=http%3A%2F%2Fp.3761.com%2Fpic%2F9771429316733.jpg" alt="用户头像">
           </span>
           <el-dropdown-menu slot="dropdown" >
-            <el-dropdown-item><i class="fa fa-question" aria-hidden="true"></i> 帮助</el-dropdown-item>
+            <el-dropdown-item><i class="fa fa-question" aria-hidden="true"></i> 帮助hhhhhhhhhhhhhhhhhhh</el-dropdown-item>
             <el-dropdown-item><i class="fa fa-cog" aria-hidden="true"></i>设置</el-dropdown-item>
             <el-dropdown-item divided><i class="fa fa-power-off" aria-hidden="true"></i>退出</el-dropdown-item>
           </el-dropdown-menu>
