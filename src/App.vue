@@ -3,7 +3,7 @@
     <!-- 头 -->
     <div class="header">
       <div class="title">
-        <span>看点咨询精选</span>
+        <span>看点咨询精选hhhhhhhhhhhhhhhhhhhhhhhhhh</span>
         <i class="fa fa-bars" aria-hidden="true" value="toggle" v-on:click="toggle()"></i>
         <el-dropdown >
           <span class="el-dropdown-link users">
