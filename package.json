@@ -12,7 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.9",
-    "highcharts": "^6.2.0",
+    "highcharts": "^7.2.2",
     "mavon-editor": "^2.6.17",
     "qs": "^6.5.2",
     "vue": "^2.5.2",
